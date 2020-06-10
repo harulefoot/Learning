@@ -4,7 +4,7 @@ if (isset($_GET["w"]) && isset($_GET["h"])){
     // データが送信されていればBMIを計算
     $w = floatval($_GET["w"]);
     $h = floatval($_GET["h"]);
-    $bmi = $w / pow($h / 100, 2);
+    $bmi = $w / pow($h / 100, 2);   // bmiの計算
     $per = floor(($bmi / 22) * 100);
     // 結果を表示
     echo "体重{$w}kg,身長{$h}cm<br/>";
