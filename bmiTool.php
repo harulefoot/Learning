@@ -3,7 +3,7 @@
 if (isset($_GET["w"]) && isset($_GET["h"])){
     // データが送信されていればBMIを計算
     $w = floatval($_GET["w"]);
-    $h = floatval($_GET["h"]);
+    $h = floatval($_GET["h"]);      // 身長
     $bmi = $w / pow($h / 100, 2);   // bmiの計算
     $per = floor(($bmi / 22) * 100);
     // 結果を表示
