@@ -15,5 +15,6 @@
         // 合計金額を更新
         $totalCost+=$price;
     }
+    // 合計金額を出力
     echo $totalCost;
 ?>
