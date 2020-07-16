@@ -14,7 +14,7 @@
         $hitAry[]=0;
     }
 
-    // 靴下のペアを探していく
+    // 見つかった靴下のペアを探していくループ
     for($ic=0;$ic<$soxNum;$ic++){
         if($hitAry[$ic]==1)continue;        // 見つかったものは飛ばす
         for($jc=$ic;$jc<$soxNum;$jc++){ 
