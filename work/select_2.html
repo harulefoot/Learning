@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>テストテスト</title>
+<script language="JavaScript">
+menuItem = [ [ "--- 選択してください ---" ],
+["--- 選択してください ---","あああ","あああ２","あああ３","あああ４","あああ５"],
+["--- 選択してください ---","いいい","いいい２"],
+["--- 選択してください ---","ううう","ううう２","ううう３"],
+["--- 選択してください ---","えええ","えええ２","えええ３","えええ４"]
+["--- 選択してください ---","おおお","おおお２","おおお３","おおお４","おおお５","おおお６"] ];
+function setMenuItem(n){
+var pullmenu = 6;
+len = document.aaa.bbb.options.length;
+for (i=len-1; i>=0; i--){
+    document.aaa.bbb.options[i] = null;
+}
+for (i=0; i<4; i++){
+    //document.aaa.bbb.options[i] = new Option(menuItem[n][i]);
+        for( j=1; j<=eval(pullmenu); j++ ){
+            if( document.aaa.Maker.selectedIndex == [j] ){
+                document.aaa.bbb.options[i].value = i+([j]*10);
+            }
+        }
+    }
+}
+
+//COOKIE保存
+function saveData(){
+theName = "value1";
+theValue = document.aaa.bbb.selectedIndex;
+theDay = 7;
+setDay = new Date();
+setDay.setTime(setDay.getTime()+(theDay*1000*60*60*24));
+expDay = setDay.toGMTString();
+document.cookie = theName + "="+escape(theValue)+";expires="+expDay;
+}
+
+//COOKIEの読み込み
+window.onload = function(){
+if( document.aaa.Maker.selectedIndex != "" ){
+var pullmenu = 4;
+k = setMenuItem(document.getElementById('q1').value);
+
+for (i=0; i<k; i++){
+document.aaa.bbb.options[i] = new Option(menuItem[k][i],menuItem[k][i]);
+
+for( j=1; j<=eval(pullmenu); j++ ){
+if( document.aaa.Maker.selectedIndex == [j] ){
+document.aaa.bbb.options[i].value = i+([j]*10);
+}
+}
+}
+theData = "";
+theName = "value1=";
+theCookie = document.cookie+";";
+start = theCookie.indexOf(theName);
+
+if (start != -1){
+end = theCookie.indexOf(";",start);
+theData = unescape(theCookie.substring(start+theName.length,end));
+}
+document.aaa.bbb.selectedIndex = theData;
+}
+}
+</script>
+</head>
+<body>
+<form name="aaa" action="./next.html" method="POST">
+<select name="Maker" id="q1" onChange="setMenuItem(this.selectedIndex)">
+<option value="" selected>--- 選択してください ---</option>
+<option value="1">ひとつ</option>
+<option value="2">ふたつ</option>
+<option value="3">みっつ</option>
+<option value="4">よっつ</option>
+</select>
+<select name="bbb" onChange="saveData()">
+<option value="" selected>--- 選択してください ---</option>
+<option value="5">b</option>
+<option value="6">bb</option>
+<option value="7">bbb</option>
+<option value="8">bbbb</option>
+</select>
+<input type="submit" name="ok" vakue="ok">
+</form>
+</body>
+</html>

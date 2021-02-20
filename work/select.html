@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>テストテスト</title>
+<script language="JavaScript">
+menuItem = [ [ ],
+["あああ","あああ２","あああ３","あああ４","あああ５"],
+["いいい","いいい２"],
+["ううう","ううう２","ううう３"],
+["えええ","えええ２","えええ３","えええ４"] ];
+function clearOption(len){
+    var i;
+    for (i=0; i<len; i++){
+        document.aaa.bbb.options[i] = null;
+    }
+}
+
+function setMenuItem(n){
+    optlen = document.aaa.bbb.options.length;
+    while(optlen > 0){
+        clearOption(optlen);
+        optlen = document.aaa.bbb.options.length;
+    }
+
+    if (menuItem[n].length() > 0){
+        for (i=0; i<menuItem[n].length(); i++){
+            document.aaa.bbb.options[i] = new Option(menuItem[n][i],menuItem[n][i]);
+            for( j=1; j<=4; j++ ){
+                if( document.aaa.Maker.selectedIndex == [j] ){
+                    document.aaa.bbb.options[i].value = i+([j]*10);
+                }
+            }
+        }
+    }
+}
+window.onload = function(){
+   // setMenuItem(document.getElementById('q1').value);
+    //alert(document.getElementById('q2').value);
+    console.log(document.getElementById('q2').value);
+    console.log(1);
+}
+</script>
+</head>
+<body>
+<form name="aaa" action="./next.html" method="POST">
+<select name="Maker" id="q1" onChange="setMenuItem(this.selectedIndex)">
+<option value="" selected>--- 選択してください ---</option>
+<option value="1">ひとつ</option>
+<option value="2">ふたつ</option>
+<option value="3">みっつ</option>
+<option value="4">よっつ</option>
+</select>
+<select name="bbb" id="q2">
+<option value="" selected>--- 選択してください ---</option>
+</select>
+<input type="submit" name="ok" vakue="ok">
+</form>
+</body>
+</html>
