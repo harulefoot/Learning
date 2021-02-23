@@ -9,3 +9,5 @@
 
 ブランドLP
 /iphone/brandlp1/12.html
+
+

@@ -26,61 +26,70 @@ for (i=0; i<4; i++){
 
 //COOKIE保存
 function saveData(){
-theName = "value1";
-theValue = document.aaa.bbb.selectedIndex;
-theDay = 7;
-setDay = new Date();
-setDay.setTime(setDay.getTime()+(theDay*1000*60*60*24));
-expDay = setDay.toGMTString();
-document.cookie = theName + "="+escape(theValue)+";expires="+expDay;
+    theName = "value1";
+    theValue = document.aaa.bbb.selectedIndex;
+    console.log(theValue);
+    document.cookie = "key=value";
+    theDay = 7;
+    setDay = new Date();
+    setDay.setTime(setDay.getTime()+(theDay*1000*60*60*24));
+    expDay = setDay.toGMTString();
+    document.cookie = theName + "="+escape(theValue)+";expires="+expDay;
+    document.cookie = 111;
 }
 
 //COOKIEの読み込み
 window.onload = function(){
-if( document.aaa.Maker.selectedIndex != "" ){
-var pullmenu = 4;
-k = setMenuItem(document.getElementById('q1').value);
+    var tmpSelect =  document.aaa.Maker.selectedIndex;
+    alert(tmpSelect);
+    if( document.aaa.Maker.selectedIndex == 0){
+        alert("Makerが空白");
+        
+//        var pullmenu = 4;
+        // //k = setMenuItem(document.getElementById('q1').value);
 
-for (i=0; i<k; i++){
-document.aaa.bbb.options[i] = new Option(menuItem[k][i],menuItem[k][i]);
+        // for (i=0; i<k; i++){
+        //     document.aaa.bbb.options[i] = new Option(menuItem[k][i],menuItem[k][i]);
 
-for( j=1; j<=eval(pullmenu); j++ ){
-if( document.aaa.Maker.selectedIndex == [j] ){
-document.aaa.bbb.options[i].value = i+([j]*10);
-}
-}
-}
-theData = "";
-theName = "value1=";
-theCookie = document.cookie+";";
-start = theCookie.indexOf(theName);
-
-if (start != -1){
-end = theCookie.indexOf(";",start);
-theData = unescape(theCookie.substring(start+theName.length,end));
-}
-document.aaa.bbb.selectedIndex = theData;
-}
+        //     for( j=1; j<=eval(pullmenu); j++ ){
+        //         if( document.aaa.Maker.selectedIndex == [j] ){
+        //             document.aaa.bbb.options[i].value = i+([j]*10);
+        //         }
+        //     }
+        // }
+        theData = "";
+        theName = "value1=";
+        theCookie = document.cookie+";";
+        start = theCookie.indexOf(theName);
+        alert(theCookie);
+        if (start != -1){
+            end = theCookie.indexOf(";",start);
+            theData = unescape(theCookie.substring(start+theName.length,end));
+        }
+        document.aaa.bbb.selectedIndex = theData;
+        alert(theData);
+    }
 }
 </script>
 </head>
 <body>
 <form name="aaa" action="./next.html" method="POST">
-<select name="Maker" id="q1" onChange="setMenuItem(this.selectedIndex)">
-<option value="" selected>--- 選択してください ---</option>
-<option value="1">ひとつ</option>
-<option value="2">ふたつ</option>
-<option value="3">みっつ</option>
-<option value="4">よっつ</option>
+<!-- <select name="Maker" id="q1" onChange="setMenuItem(this.selectedIndex)"> -->
+<select name="Maker" id="q1">
+    <option value="" selected>--- 選択してください ---</option>
+    <option value="1">ひとつ</option>
+    <option value="2">ふたつ</option>
+    <option value="3">みっつ</option>
+    <option value="4">よっつ</option>
 </select>
-<select name="bbb" onChange="saveData()">
-<option value="" selected>--- 選択してください ---</option>
-<option value="1">b</option>
-<option value="2">bb</option>
-<option value="3">bbb</option>
-<option value="4">bbbb</option>
+<select name="bbb">
+    <option value="" selected>--- 選択してください ---</option>
+    <option value="1">b</option>
+    <option value="2">bb</option>
+    <option value="3">bbb</option>
+    <option value="4">bbbb</option>
 </select>
-<input type="submit" name="ok" vakue="ok">
+<input type="submit" name="ok" vakue="ok" onclick="saveData()">
 </form>
 </body>
 </html>
